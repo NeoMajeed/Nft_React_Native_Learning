@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import {View, SafeAreaView, FlatList, Text} from 'react-native';
+import * as Haptics from 'expo-haptics';
 
 import {COLORS, NFTData} from '../constants';
 import { NFTCard, HomeHeader, FoucsedStatusBar } from '../components';
@@ -16,6 +17,7 @@ const Home = () => {
             keyExtractor={item => item.id}
             showsVerticalScrollIndicator={false}
             ListHeaderComponent={<HomeHeader />}
+            onViewableItemsChanged={()=>{Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light)}}
           />
         </View>
 
@@ -27,8 +29,7 @@ const Home = () => {
           right:0,
           zIndex:-1,
         }}>
-          <View style={{height: 300, backgroundColor: COLORS.primary}} />
-          <View style={{flex:1, backgroundColor: COLORS.white}} />
+          <View style={{height: "100%", backgroundColor: COLORS.primary}} />
         </View>
       </View>
     </SafeAreaView>
